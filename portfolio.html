@@ -14,22 +14,66 @@
         <h1>Projects</h1>
         <nav>
             <ul>
-                <li><a href="about.html">Basic information</a></li>
-                <li><a href="technical-interests.html">technical interest</a></li>
+                <li><a href="about.html">Basic Information</a></li>
+                <li><a href="technical-interests.html">Technical Interests</a></li>
                 <li><a href="portfolio.html" class="active">Projects</a></li>
                 <li><a href="message-board.html">Message Center</a></li>
             </ul>
         </nav>
-        <button id="contact">Contact me</button>
+        <button id="contact">Contact Me</button>
     </header>
     <main class="main">
         <div id="left">
             <h5>&nbsp;Projects</h5>
-            <p class="bsinfo"><span id="ta">Project 1：</span> information</p>
-            <p class="bsinfo"><span id="ta">Project 2：</span> xxx</p>
+            
+            <!-- Project 1 -->
+            <div class="project-item">
+                <h3>Smart Todo Manager</h3>
+                <p class="bsinfo">
+                    <span class="tech-stack">Tech Stack:</span>
+                    React + LocalStorage
+                </p>
+                <ul class="project-features">
+                    <li>✓ Task CRUD (with drag-and-drop sorting)</li>
+                    <li>✓ Priority tags & deadline reminders</li>
+                    <li>✓ Dark mode toggle</li>
+                    <li>✓ Local data persistence</li>
+                </ul>
+                <button class="demo-btn" onclick="location.href='todo-demo.html'">
+                    <i class="fas fa-play"></i> View Demo
+                </button>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-item">
+                <h3>Campus Marketplace</h3>
+                <p class="bsinfo">
+                    <span class="tech-stack">Tech Stack:</span>
+                    Vue3 + Node.js + MongoDB
+                </p>
+                <ul class="project-features">
+                    <li>✓ Multi-image upload for listings</li>
+                    <li>✓ Real-time chat system</li>
+                    <li>✓ Smart search & category filters</li>
+                    <li>✓ Docker container deployment</li>
+                </ul>
+                <button class="demo-btn" onclick="location.href='market-demo.html'">
+                    <i class="fas fa-store"></i> Visit Platform
+                </button>
+            </div>
         </div>
+
         <div id="right">
-            <img src="project1.jpg" id="projectimg">
+            <!-- Project Image Carousel -->
+            <div class="project-carousel">
+                <img src="project1-screenshot.jpg" alt="Todo List Demo" class="active">
+                <img src="project2-screenshot.jpg" alt="Market Platform">
+            </div>
+            <div class="project-controls">
+                <button id="prev-proj"><i class="fas fa-chevron-left"></i></button>
+                <span class="project-counter">1/2</span>
+                <button id="next-proj"><i class="fas fa-chevron-right"></i></button>
+            </div>
         </div>
     </main>
     <script src="script.js"></script>
