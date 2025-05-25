@@ -128,6 +128,16 @@ nav a.active {
     padding: 20px;
 }
 
+.project-image {
+    max-width: 600px;    /* 控制最大宽度 */
+    width: 90%;          /* 相对父容器宽度 */
+    height: auto;        /* 保持原始比例 */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin: 20px auto;   /* 居中显示 */
+    display: block;      /* 消除底部间隙 */
+}
+
 /* Image Styles */
 #basicimg, #hbimg, #projectimg {
     max-width: 100%;
