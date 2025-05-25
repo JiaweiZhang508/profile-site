@@ -9,7 +9,6 @@
     <link rel="shortcut icon" href="favicn.ico" type="image/x-icon">
 </head>
 <body>
-    <div id="alertBox" class="alert"></div>
     <header id="head">
         <h1>Projects</h1>
         <nav>
@@ -34,14 +33,11 @@
                     React + LocalStorage
                 </p>
                 <ul class="project-features">
-                    <li>✓ Task CRUD (with drag-and-drop sorting)</li>
-                    <li>✓ Priority tags & deadline reminders</li>
-                    <li>✓ Dark mode toggle</li>
+                    <li>✓ Task CRUD operations</li>
+                    <li>✓ Priority tagging system</li>
+                    <li>✓ Dark mode support</li>
                     <li>✓ Local data persistence</li>
                 </ul>
-                <button class="demo-btn" onclick="location.href='todo-demo.html'">
-                    <i class="fas fa-play"></i> View Demo
-                </button>
             </div>
 
             <!-- Project 2 -->
@@ -52,28 +48,17 @@
                     Vue3 + Node.js + MongoDB
                 </p>
                 <ul class="project-features">
-                    <li>✓ Multi-image upload for listings</li>
+                    <li>✓ Multi-image uploads</li>
                     <li>✓ Real-time chat system</li>
-                    <li>✓ Smart search & category filters</li>
-                    <li>✓ Docker container deployment</li>
+                    <li>✓ Advanced search filters</li>
+                    <li>✓ Docker containerization</li>
                 </ul>
-                <button class="demo-btn" onclick="location.href='market-demo.html'">
-                    <i class="fas fa-store"></i> Visit Platform
-                </button>
             </div>
         </div>
 
         <div id="right">
-            <!-- Project Image Carousel -->
-            <div class="project-carousel">
-                <img src="project1-screenshot.jpg" alt="Todo List Demo" class="active">
-                <img src="project2-screenshot.jpg" alt="Market Platform">
-            </div>
-            <div class="project-controls">
-                <button id="prev-proj"><i class="fas fa-chevron-left"></i></button>
-                <span class="project-counter">1/2</span>
-                <button id="next-proj"><i class="fas fa-chevron-right"></i></button>
-            </div>
+            <!-- Single Static Project Image -->
+            <img src="project-main.jpg" alt="Main Project Preview" class="project-image">
         </div>
     </main>
     <script src="script.js"></script>
