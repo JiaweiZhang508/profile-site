@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="head">
+        <h1>Message Center</h1>
+        <nav>
+            <ul>
+                <li><a href="about.html">Basic information</a></li>
+                <li><a href="technical-interests.html">technical interest</a></li>
+                <li><a href="portfolio.html">Projects</a></li>
+                <li><a href="message-board.html" class="active">Message Center</a></li>
+            </ul>
+        </nav>
+        <button id="contact">Contact me</button>
+    </header>
+    <main class="main">
+        <div id="left">
+            <h4>&nbsp;Message Center：</h4>
+            <div id="messagecontainer"></div>
+        </div>
+        <div id="right">
+            <textarea name="message" id="inputText" cols="30" rows="10" placeholder="Say something："></textarea>
+            <button id="send"><i class="fa-regular fa-paper-plane"></i></button>
+            <button id="clear"><i class="fa-solid fa-eraser"></i></button>
+            <button id="clearall"><i class="fa-regular fa-trash-can"></i></button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
