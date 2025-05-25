@@ -1,39 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Get DOM elements with null checks
+    // Get DOM elements
     const contactBtn = document.getElementById("contact");
-    const prevImgBtn = document.getElementById("up");
-    const nextImgBtn = document.getElementById("down");
     const sendBtn = document.getElementById("send");
-    const hobbyImage = document.getElementById("hbimg");
     const messageInput = document.getElementById("inputText");
-    const alertBox = document.getElementById("alertBox");
     const messageContainer = document.getElementById("messagecontainer");
-    const clearInputBtn = document.getElementById("clear");
+    const clearBtn = document.getElementById("clear");
     const clearAllBtn = document.getElementById("clearall");
+    const alertBox = document.getElementById("alertBox");
     const navLinks = document.querySelectorAll('nav a');
 
-    // Image carousel configuration
-    const imagePaths = [
-        "tra2.jpg",
-        "tra9.jpg", 
-        "tra11.jpg",
-        "tra19.jpg",
-        "tra21.jpg",
-        "T1.jpg",
-        "YN.jpg"
-    ];
-    let currentImageIndex = 0;
+    // Initialize messages
     let storedMessages = localStorage.getItem("key") || "";
-
-    // Initialize message board
-    if (messageContainer) {
-        messageContainer.innerHTML = storedMessages;
-    }
+    if (messageContainer) messageContainer.innerHTML = storedMessages;
 
     // Contact button handler
     if (contactBtn && alertBox) {
         contactBtn.addEventListener('click', () => {
-            alertBox.innerHTML = 'You can guess the contact information 😉';
+            alertBox.innerHTML = 'Contact information available on request';
             alertBox.classList.add('show');
             setTimeout(() => {
                 alertBox.classList.remove('show');
@@ -41,59 +24,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Image carousel controls
-    if (prevImgBtn && nextImgBtn && hobbyImage) {
-        const updateImage = () => {
-            hobbyImage.src = imagePaths[currentImageIndex];
-        };
+    // Message submission
+    const handleMessageSubmit = () => {
+        const content = messageInput.value.trim();
+        if (content) {
+            storedMessages += `<p>${content}</p>`;
+            localStorage.setItem("key", storedMessages);
+            messageContainer.innerHTML = storedMessages;
+            messageInput.value = "";
+        } else {
+            alertBox.innerHTML = "Please enter a message first!";
+            alertBox.classList.add('show');
+            setTimeout(() => {
+                alertBox.classList.remove('show');
+            }, 3000);
+        }
+    };
 
-        prevImgBtn.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex - 1 + imagePaths.length) % imagePaths.length;
-            updateImage();
-        });
-
-        nextImgBtn.addEventListener('click', () => {
-            currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
-            updateImage();
-        });
-
-        // Initialize first image
-        updateImage();
+    // Send button event
+    if (sendBtn) {
+        sendBtn.addEventListener('click', handleMessageSubmit);
     }
 
-    // Message board functionality
-    if (sendBtn && messageInput && messageContainer && alertBox) {
-        const handleMessageSubmit = () => {
-            const messageContent = messageInput.value.trim();
-            
-            if (messageContent) {
-                storedMessages += `<p>${messageContent}</p>`;
-                localStorage.setItem("key", storedMessages);
-                messageContainer.innerHTML = storedMessages;
-                messageInput.value = "";
-            } else {
-                alertBox.innerHTML = "Please enter a message before sending!";
-                alertBox.classList.add('show');
-                setTimeout(() => {
-                    alertBox.classList.remove('show');
-                }, 3000);
-            }
-        };
-
-        sendBtn.addEventListener('click', handleMessageSubmit);
-
-        // Enter key submission
-        messageInput.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
+    // Enter key event
+    if (messageInput) {
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
                 handleMessageSubmit();
             }
         });
     }
 
-    // Clear input field
-    if (clearInputBtn && messageInput) {
-        clearInputBtn.addEventListener('click', () => {
+    // Clear input
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
             messageInput.value = "";
         });
     }
