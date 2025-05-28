@@ -28,10 +28,11 @@
             <div id="messagecontainer"></div>
         </div>
         <div id="right">
+            <label for="inputText">Say something：</label>
             <textarea name="message" id="inputText" cols="30" rows="10" placeholder="Say something："></textarea>
-            <button id="send"><i class="fa-regular fa-paper-plane"></i></button>
-            <button id="clear"><i class="fa-solid fa-eraser"></i></button>
-            <button id="clearall"><i class="fa-regular fa-trash-can"></i></button>
+            <button id="send" aria-label="Send Message"><i class="fa-regular fa-paper-plane"></i></button>
+            <button id="clear" aria-label="Clear Input"><i class="fa-solid fa-eraser"></i></button>
+            <button id="clearall" aria-label="Clear All Messages"><i class="fa-regular fa-trash-can"></i></button>
         </div>
     </main>
     <script src="script.js"></script>
