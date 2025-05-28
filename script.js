@@ -49,10 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
         send.addEventListener('click', () => {
             const content = inputText.value.trim();
             if (content) {
-                message += `<p>${content}</p>`;
-                localStorage.setItem("key", message);
-                inputText.value = "";
-                messagecontainer.innerHTML = message;
+                if (confirm('Are you sure you want to send this message?')) {
+                    message += `<p>${content}</p>`;
+                    localStorage.setItem("key", message);
+                    inputText.value = "";
+                    messagecontainer.innerHTML = message;
+                }
             } else {
                 alertBox.innerHTML = "You didn't even enter it! How do I record!";
                 alertBox.classList.add('show');
@@ -66,16 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // 清除输入框
     if (clear && inputText) {
         clear.addEventListener('click', () => {
-            inputText.value = "";
+            if (confirm('Are you sure you want to clear the input box?')) {
+                inputText.value = "";
+            }
         });
     }
 
     // 清空所有留言
     if (clearall && messagecontainer) {
         clearall.addEventListener('click', () => {
-            message = "";
-            localStorage.removeItem("key");
-            messagecontainer.innerHTML = "";
+            if (confirm('Are you sure you want to clear all messages?')) {
+                message = "";
+                localStorage.removeItem("key");
+                messagecontainer.innerHTML = "";
+            }
         });
     }
 
