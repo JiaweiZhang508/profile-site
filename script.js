@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const send = document.getElementById("send");
     const hbimg = document.getElementById("hbimg");
     const inputText = document.getElementById("inputText");
-    const alertBox = document.getElementById("alertBox"); // 修正ID匹配
+    const alertBox = document.getElementById("alertBox"); 
     const messagecontainer = document.getElementById("messagecontainer");
     const clear = document.getElementById("clear");
     const clearall = document.getElementById("clearall");
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 图片数组（确保图片路径正确）
     let img = ["tra2.jpg", "tra9.jpg", "tra11.jpg", "tra19.jpg", "tra21.jpg", "T1.jpg", "YN.jpg"];
     let index = 0;
-    let message = localStorage.getItem("key") || ""; // 正确处理空值
+    let message = localStorage.getItem("key") || ""; 
 
     // 初始化留言内容
     if (messagecontainer) messagecontainer.innerHTML = message;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 图片切换功能（添加边界检查）
     if (up && down && hbimg) {
         up.addEventListener('click', () => {
-            index = (index - 1 + img.length) % img.length; // 防止负数
+            index = (index - 1 + img.length) % img.length; 
             hbimg.src = img[index];
         });
 
@@ -47,40 +47,56 @@ document.addEventListener('DOMContentLoaded', () => {
     // 发送留言功能（优化逻辑）
     if (send && inputText && messagecontainer && alertBox) {
         send.addEventListener('click', () => {
-            const content = inputText.value.trim();
-            if (content) {
-                if (confirm('Are you sure you want to send this message?')) {
+            if (confirm('Are you sure you want to send this message?')) {
+                const content = inputText.value.trim();
+                if (content) {
                     message += `<p>${content}</p>`;
                     localStorage.setItem("key", message);
                     inputText.value = "";
                     messagecontainer.innerHTML = message;
+                } else {
+                    alertBox.innerHTML = "You didn't even enter it! How do I record!";
+                    alertBox.classList.add('show');
+                    setTimeout(() => {
+                        alertBox.classList.remove('show');
+                    }, 3000);
                 }
-            } else {
-                alertBox.innerHTML = "You didn't even enter it! How do I record!";
-                alertBox.classList.add('show');
-                setTimeout(() => {
-                    alertBox.classList.remove('show');
-                }, 3000);
             }
         });
     }
 
     // 清除输入框
-    if (clear && inputText) {
+    if (clear && inputText && alertBox) {
         clear.addEventListener('click', () => {
-            if (confirm('Are you sure you want to clear the input box?')) {
-                inputText.value = "";
+            if (inputText.value.trim() === "") {
+                alertBox.innerHTML = "You didn't even enter it! How do I clear!";
+                alertBox.classList.add('show');
+                setTimeout(() => {
+                    alertBox.classList.remove('show');
+                }, 3000);
+            } else {
+                if (confirm('Are you sure you want to clear the input box?')) {
+                    inputText.value = "";
+                }
             }
         });
     }
 
     // 清空所有留言
-    if (clearall && messagecontainer) {
+    if (clearall && messagecontainer && alertBox) {
         clearall.addEventListener('click', () => {
-            if (confirm('Are you sure you want to clear all messages?')) {
-                message = "";
-                localStorage.removeItem("key");
-                messagecontainer.innerHTML = "";
+            if (message === "") {
+                alertBox.innerHTML = "It's completely empty. I can't get rid of it.";
+                alertBox.classList.add('show');
+                setTimeout(() => {
+                    alertBox.classList.remove('show');
+                }, 3000);
+            } else {
+                if (confirm('Are you sure you want to clear all messages?')) {
+                    message = "";
+                    localStorage.removeItem("key");
+                    messagecontainer.innerHTML = "";
+                }
             }
         });
     }
@@ -89,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (inputText && send) {
         inputText.addEventListener("keydown", (event) => {
             if (event.key === "Enter") {
-                event.preventDefault(); // 阻止默认换行
+                event.preventDefault(); 
                 send.click();
             }
         });
